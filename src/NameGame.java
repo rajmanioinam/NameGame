@@ -16,7 +16,8 @@ public class NameGame {
             }
             int randomIndex = (int)(Math.random()*10);
             String generatedName = nameList[randomIndex];
-            String guessedString = "";
+            //String guessedString = "";
+            String wrongGuess = "";
             StringBuilder guessedName = new StringBuilder();
             System.out.println(generatedName);
             for (int i= 0; i<generatedName.length();i++) {
@@ -29,12 +30,33 @@ public class NameGame {
                 System.out.println("Guess a letter: ");
                 Scanner guess = new Scanner(System.in);
                 String guessedLetter = guess.nextLine();
-                guessedString +=" " + guessedLetter;
-                System.out.println("You have guess " + guessedString);
-                //StringBuilder myName = new StringBuilder("_____");
-                //myName.setCharAt(4, 'x');
-                //System.out.println(myName);
-                guessCounter++;
+
+                //guessedString +=" " + guessedLetter;
+
+                boolean correctGuess = false;
+                int fromIndex = 0;
+                while (generatedName.indexOf(guessedLetter, fromIndex)!=-1){
+                    correctGuess = true;
+                    fromIndex = generatedName.indexOf(guessedLetter, fromIndex);
+                    guessedName.setCharAt(fromIndex, guessedLetter.toCharArray()[0]);
+                    fromIndex++;
+                }
+                if(!correctGuess){
+                    wrongGuess += " " + guessedLetter;
+                    guessCounter++;
+                }
+                System.out.println("You have guessed (" +  guessCounter + ") wrong letters: " + wrongGuess);
+                if(generatedName.equals(guessedName.toString())){
+                    break;
+                }
+            }
+            if(generatedName.equals(guessedName.toString())){
+                System.out.println("You win!!");
+                System.out.println("Correct name is: " + generatedName);
+            }
+            else{
+                System.out.println("You Lose!!");
+                System.out.println("Correct name is: " + generatedName);
             }
         }
         catch (Exception ex){
