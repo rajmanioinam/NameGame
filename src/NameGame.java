@@ -23,10 +23,11 @@ public class NameGame {
             for (int i= 0; i<generatedName.length();i++) {
                 guessedName.append("_");
             }
-            System.out.println("You are guessing " + guessedName.toString() + "");
+
 
             int guessCounter = 0;
             while(guessCounter<5){
+                System.out.println("You are guessing " + guessedName.toString() + "");
                 System.out.println("Guess a letter: ");
                 Scanner guess = new Scanner(System.in);
                 String guessedLetter = guess.nextLine();
@@ -45,18 +46,18 @@ public class NameGame {
                     wrongGuess += " " + guessedLetter;
                     guessCounter++;
                 }
-                System.out.println("You have guessed (" +  guessCounter + ") wrong letters: " + wrongGuess);
                 if(generatedName.equals(guessedName.toString())){
                     break;
                 }
+                System.out.println("You have guessed (" +  guessCounter + ") wrong letters: " + wrongGuess);
             }
             if(generatedName.equals(guessedName.toString())){
                 System.out.println("You win!!");
-                System.out.println("Correct name is: " + generatedName);
+                System.out.println("The correct name is: " + generatedName);
             }
             else{
                 System.out.println("You Lose!!");
-                System.out.println("Correct name is: " + generatedName);
+                System.out.println("The correct name is: " + generatedName);
             }
         }
         catch (Exception ex){
